@@ -1,0 +1,3 @@
+mz_threshold: 1e-2
+p_threshold: 1e-4
+dedup_annotations: union

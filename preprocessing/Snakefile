@@ -1,0 +1,46 @@
+configfile: 'config.yaml'
+localrules: preprocess
+
+
+rule preprocess:
+    input:
+        mbx_res_fn='output/mbx_dedup.feat.bin_sparse',
+        mbx_comp_res_fn='output/mbx.comp',
+        mgx_res_fn='input/mgx.feat.bin_sparse',
+        samples_res_fn='input/samples.tsv'
+    output:
+        mbx_fn='../input/mbx.feat.bin_sparse',
+        mgx_fn='../input/mgx.feat.bin_sparse',
+        mbx_comp_fn='../input/mbx.comp',
+        samples_fn='../input/samples.tsv'
+    shell:
+        '''
+        cp {input.mbx_res_fn} {output.mbx_fn}
+        cp {input.mgx_res_fn} {output.mgx_fn}
+        cp {input.mbx_comp_res_fn} {output.mbx_comp_fn}
+        cp {input.samples_res_fn} {output.samples_fn}
+        '''
+
+
+rule generate_mbx_mz_list:
+    input:
+        mbx_fn='input/mbx.feat.bin_sparse'
+    output:
+        mz_list_fn='input/mz_list.tsv'
+    run:
+        pass
+# TODO: To be implemented for each metabolomics features source separately.
+
+
+rule deduplicate_mbx:
+    input:
+        mbx_fn='input/mbx.feat.bin_sparse',
+        mbx_samples_fn='input/samples_mbx.tsv',
+        mz_list_fn='input/mz_list.tsv'
+    output:
+        mbx_res_fn='output/mbx_dedup.feat.bin_sparse',
+        mbx_comp_fn='output/mbx.comp'
+    log:
+        'log/dedup_mbx.log'
+    script:
+        'scripts/dedup_mbx.py'

@@ -1,0 +1,7 @@
+fisher_alternative: two-sided
+threshold: 1e-5
+fdr_thresholds: [1e-5, 1e-10]
+associations_parts: 1
+tree_biclustering:
+    p_threshold: 1e-5
+    clade_threshold: 1
