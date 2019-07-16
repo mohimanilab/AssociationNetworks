@@ -178,6 +178,6 @@ Individual steps can also be executed. For more information visit
 [Snakemake](https://snakemake.readthedocs.io/en/stable/) website.
 
 ## Authors
-Egor Shcherbin, Hosein Mohimani
+Egor Shcherbin, Liu Cao, Hosein Mohimani
 
-Mohimani Lab, CMU, 2018
+Mohimani Lab, CMU, 2019
